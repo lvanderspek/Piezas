@@ -49,8 +49,9 @@ Piece Piezas::dropPiece(int column)
     if (column > 3)
         return Invalid;
 
-    for (Piece &p : board[column])
+    for (int i = 0; i < 3; i++)
     {
+        Piece &p = board[i][0];
         if (p == Blank)
         {
             p = turn;
