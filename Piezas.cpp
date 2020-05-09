@@ -32,7 +32,7 @@ Piezas::Piezas()
 void Piezas::reset()
 {
     // 3 rows, 4 cols
-    board.resize(4,std::vector<Piece>(3,Blank));
+    board.resize(3,std::vector<Piece>(4,Blank));
     turn = X;
 }
 
@@ -46,16 +46,17 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 {
+    turn = (turn==X)? O : X;
+
     if (column > 3)
         return Invalid;
 
     for (int i = 0; i < 3; i++)
     {
-        Piece &p = board[i][0];
+        Piece &p = board[i][column];
         if (p == Blank)
         {
-            p = turn;
-            turn = (turn==X)? O : X;
+            p = (turn==X)? O : X;
             return p;
         }
     }
@@ -86,5 +87,50 @@ Piece Piezas::pieceAt(int row, int column)
 **/
 Piece Piezas::gameState()
 {
+    int xmax = 0;
+    int omax = 0;
+
+    for (int r = 0; r < 3; r++)
+    {
+        int xsum = 0;
+        int osum = 0;
+        for (int c = 0; c < 4; c++)
+        {
+            Piece &p = board[r][c];
+            if (p==X)
+                xsum++;
+            if (p==O)
+                osum++;
+            if (p==Blank)
+                return Invalid;
+        }
+        if (xsum>xmax)
+            xmax = xsum;
+        if (osum>omax)
+            omax = osum;
+    }
+
+    for (int c = 0; c < 4; c++)
+    {
+        int xsum = 0;
+        int osum = 0;
+        for (int r = 0; r < 3; r++)
+        {
+            Piece &p = board[r][c];
+            if (p==X)
+                xsum++;
+            if (p==O)
+                osum++;
+        }
+        if (xsum>xmax)
+            xmax = xsum;
+        if (osum>omax)
+            omax = osum;
+    }
+
+    if (xmax>omax)
+        return X;
+    if (omax>xmax)
+        return O;
     return Blank;
 }
