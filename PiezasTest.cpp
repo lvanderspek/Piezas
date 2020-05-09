@@ -18,3 +18,49 @@ TEST(PiezasTest, sanityCheck)
 {
 	ASSERT_TRUE(true);
 }
+
+
+/* test the reset function */
+
+
+
+
+
+
+
+
+
+/* test the dropPiece function */
+
+
+
+
+
+
+
+
+
+
+
+/* test the pieceAt function */
+
+
+
+
+
+
+
+
+
+
+
+/* test the gameState function */
+
+
+
+
+
+
+
+
+
