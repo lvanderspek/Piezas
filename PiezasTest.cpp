@@ -83,7 +83,7 @@ TEST(PiezasTest, outOfBounds)
 {
     Piezas p;
     Piece piece = p.dropPiece(4);
-    ASSERT_TRUE(piece==Blank);
+    ASSERT_TRUE(piece==Invalid);
 }
 
 // full column
