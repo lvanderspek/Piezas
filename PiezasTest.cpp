@@ -136,11 +136,59 @@ TEST(PiezasTest, doublePiece)
 
 /* test the gameState function */
 
+TEST(PiezasTest, incomplete)
+{
+    Piezas p;
+    Piece winner = p.gameState();
+    ASSERT_TRUE(winner==Invalid);
+}
 
+TEST(PiezasTest, xWin)
+{
+    Piezas p;
+    p.dropPiece(0); //X
+    p.dropPiece(0); //O
 
+    p.dropPiece(1); //X
+    p.dropPiece(0); //O
 
+    p.dropPiece(2); //X
+    p.dropPiece(1); //O
 
+    p.dropPiece(3); //X
+    p.dropPiece(1); //O
 
+    p.dropPiece(2); //X
+    p.dropPiece(3); //O
 
+    p.dropPiece(2); //X
+    p.dropPiece(3); //O
 
+    Piece winner = p.gameState();
+    ASSERT_TRUE(winner==X);
+}
 
+TEST(PiezasTest, tie)
+{
+    Piezas p;
+    p.dropPiece(0); //X
+    p.dropPiece(1); //O
+
+    p.dropPiece(0); //X
+    p.dropPiece(1); //O
+
+    p.dropPiece(0); //X
+    p.dropPiece(1); //O
+
+    p.dropPiece(2); //X
+    p.dropPiece(3); //O
+
+    p.dropPiece(2); //X
+    p.dropPiece(3); //O
+
+    p.dropPiece(2); //X
+    p.dropPiece(3); //O
+
+    Piece winner = p.gameState();
+    ASSERT_TRUE(winner==Blank);
+}
