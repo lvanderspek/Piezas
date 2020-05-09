@@ -32,6 +32,70 @@ TEST(PiezasTest, sanityCheck)
 
 /* test the dropPiece function */
 
+// single drop
+TEST(PiezasTest, singleDrop)
+{
+    Piezas p;
+    Piece piece = p.dropPiece(0);
+    ASSERT_TRUE(piece==X);
+}
+
+// double drop
+TEST(PiezasTest, doubleDrop)
+{
+    Piezas p;
+    p.dropPiece(0);
+    Piece piece = p.dropPiece(0);
+    ASSERT_TRUE(piece==O);
+}
+
+// dual column double drop
+TEST(PiezasTest, dualColumnDoubleDrop)
+{
+    Piezas p;
+    p.dropPiece(0);
+    Piece piece = p.dropPiece(1);
+    ASSERT_TRUE(piece==O);
+}
+
+// triple drop
+TEST(PiezasTest, tripleDrop)
+{
+    Piezas p;
+    p.dropPiece(0);
+    p.dropPiece(0);
+    Piece piece = p.dropPiece(0);
+    ASSERT_TRUE(piece==X);
+}
+
+// dual column triple drop
+TEST(PiezasTest, dualColumnTripleDrop)
+{
+    Piezas p;
+    p.dropPiece(0);
+    p.dropPiece(1);
+    Piece piece = p.dropPiece(0);
+    ASSERT_TRUE(piece==X);
+}
+
+// out of bounds
+TEST(PiezasTest, outOfBounds)
+{
+    Piezas p;
+    Piece piece = p.dropPiece(4);
+    ASSERT_TRUE(piece==Blank);
+}
+
+// full column
+TEST(PiezasTest, fullColumn)
+{
+    Piezas p;
+    p.dropPiece(0);
+    p.dropPiece(0);
+    p.dropPiece(0);
+    Piece piece = p.dropPiece(0);
+    ASSERT_TRUE(piece==Blank);
+}
 
 
 
