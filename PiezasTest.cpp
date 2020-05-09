@@ -34,8 +34,7 @@ TEST(PiezasTest, sanityCheck)
 
 // single drop
 TEST(PiezasTest, singleDrop)
-{
-    Piezas p;
+{ Piezas p;
     Piece piece = p.dropPiece(0);
     ASSERT_TRUE(piece==X);
 }
@@ -109,7 +108,24 @@ TEST(PiezasTest, fullColumn)
 /* test the pieceAt function */
 
 
+// single piece
+TEST(PiezasTest, singlePiece)
+{
+    Piezas p;
+    p.dropPiece(0);
+    Piece piece = p.pieceAt(0,0);
+    ASSERT_TRUE(piece==X);
+}
 
+// double piece
+TEST(PiezasTest, doublePiece)
+{
+    Piezas p;
+    p.dropPiece(0);
+    p.dropPiece(0);
+    Piece piece = p.pieceAt(1,0);
+    ASSERT_TRUE(piece==O);
+}
 
 
 
