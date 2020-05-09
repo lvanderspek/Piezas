@@ -127,6 +127,19 @@ TEST(PiezasTest, doublePiece)
     ASSERT_TRUE(piece==O);
 }
 
+// col out of range
+TEST(PiezasTest, invalidCol) {
+    Piezas p;
+    Piece piece = p.pieceAt(0,-1);
+    ASSERT_TRUE(piece==Invalid);
+}
+
+// row out of range
+TEST(PiezasTest, invalidRow) {
+    Piezas p;
+    Piece piece = p.pieceAt(-1,0);
+    ASSERT_TRUE(piece==Invalid);
+}
 
 
 
