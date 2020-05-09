@@ -22,6 +22,7 @@
 **/
 Piezas::Piezas()
 {
+    reset();
 }
 
 /**
@@ -30,6 +31,9 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
+    // 3 rows, 4 cols
+    board.resize(4,std::vector<Piece>(3,Blank));
+    turn = X;
 }
 
 /**
@@ -42,6 +46,18 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 {
+    if (column > 3)
+        return Invalid;
+
+    for (Piece &p : board[column])
+    {
+        if (p == Blank)
+        {
+            p = turn;
+            turn = (turn==X)? O : X;
+            return p;
+        }
+    }
     return Blank;
 }
 
